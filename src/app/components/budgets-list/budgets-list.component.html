@@ -1,36 +1,39 @@
-<form class="form">
+<form [formGroup]="budgetForm">
   <div class="mb-3">
     <div class="container-fluid">
-      <div class="row mt-3 mb-3">
-        <h1>Aconsegueix la millor qualitat</h1>
-      </div>
-      <div class="form-check d-flex justify-content-around">
+      <header class="row mt-3 mb-3">
+        <h2 class="text-center">Aconsegueix la millor qualitat</h2>
+      </header>
+      <div class="form-check d-flex justify-content-around" id="seo">
         <h4>Seo</h4>
         <p>promació d'una pagina web</p>
         <p>300€</p>
         <div class="container-checkbox">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <input class="form-check-input" type="checkbox" formControlName="seoCampaign" id="seo"/>
         <label class="form-check-label" for="flexCheckDefault">Afegir</label>
         </div>
       </div>
-      <div class="form-check d-flex justify-content-around">
-          <h4>Seo</h4>
+      <div class="form-check d-flex justify-content-around" id="ads">
+          <h4>Ads</h4>
         <p>promació d'una pagina web</p>
-        <p>300€</p>
+        <p>400€</p>
         <div class="container-checkbox">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked/>
+        <input class="form-check-input" type="checkbox" formControlName="adCampaign" id="ads" checked/>
         <label class="form-check-label" for="flexCheckChecked">Afegir</label>
       </div>
     </div>
-      <div class="form-check d-flex justify-content-around">
-        <h4>Seo</h4>
+      <div class="form-check d-flex justify-content-around" id="web">
+        <h4>Web</h4>
         <p>promació d'una pagina web</p>
-        <p>300€</p>
+        <p>500€</p>
         <div class="container-checkbox">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <input class="form-check-input" type="checkbox" formControlName="webCampaign" id="web"/>
         <label class="form-check-label" for="flexCheckDefault">Afegir</label>
       </div>
     </div>
+    <div class="container-totalPrice d-flex justify-content-end">
+      <h3>Total: {{totalPrice}} €</h3>
     </div>
+    </div> 
   </div>
 </form>
