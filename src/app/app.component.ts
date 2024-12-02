@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { BudgetsListComponent } from "./components/budgets-list/budgets-list.component";
+import { Component} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { BudgetsListComponent } from "./components/budgets-list/budgets-list.component";
 
 
 
@@ -17,6 +16,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 export class AppComponent {
   title = 'budget-Sprint6-Angular2';
- 
-
+  
 }
+

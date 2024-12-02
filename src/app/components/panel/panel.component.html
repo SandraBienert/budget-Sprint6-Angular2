@@ -1,0 +1,23 @@
+
+<div class="mt-4">
+<h3>Configura la teva Web</h3>
+<form [formGroup]="panelForm">
+  <div class="mb-3">
+    <label for="numPages" class="form-label">Nombre de pàgines</label>
+    <div class="input-group">
+      <button type ="button" class="btn btn-outline-secondary" (click)="decrement('numPages')">-</button>
+      <input type="number" class ="form-control" id="numPages" formControlName="numPages"/>
+      <button type ="button" class="btn btn-outline-secondary" (click)="increment('numPages')">+</button>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="numLanguages" class="form-label">Nombre d'Idiomes</label>
+    <div class="input-group">
+      <button type ="button" class="btn btn-outline-secondary" (click)="decrement('numLanguages')">-</button>
+      <input type="number" class ="form-control" id="numLanguages" formControlName="numLanguages"/>
+      <button type ="button" class="btn btn-outline-secondary" (click)="increment('numLanguages')">+</button>
+    </div>
+  </div>
+</form>
+</div>
+
