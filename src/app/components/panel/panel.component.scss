@@ -1,26 +1,7 @@
 
-.container {
-    max-width: 500px;
-    margin: 0 auto;
-}
+.container.d-flex.flex-column.justify-content-end{
 
-h3 {
-    text-align: center;
-}
-
-form {
-    .form-label {
-        font-weight: bold;
-    }
-
-    .form-control {
-        margin-top: 8px;
-    }
-
-.input-group{
-    display: flex;
-    .btn {
-        width: 50px;
-    }
-}
+    width: 400px;
+    
+  
 }

@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
-
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
-  
+
 export class BudgetService {
-
-  calculateTotal(services: any[], webSettings: { numPages: number; numLanguages: number; }) {
+ 
+  calculateTotalPrice(budgetForm: FormGroup): number {
+    let total = 0;
   
-    let totalPrice = services.reduce((acc: any, service: { selected: any; price: any; }) => {
-      return acc + (service.selected ? service.price : 0);
-    }, 0);
+    if (budgetForm.value.seoCampaign) total += 300;
+    if (budgetForm.value.adsCampaign) total += 400;
+    if (budgetForm.value.webCampaign) {
+      total += 500;
+      total += (budgetForm.value.numPages + budgetForm.value.numLanguages) * 30; // Afegim el cost de pàgines i idiomes només si webCampaign és seleccionat 
+    } 
+      return total;
+    }
 
-    if (services.find((service: { title: string; }) => service.title === 'web')?.selected) {
-     totalPrice +=  webSettings.numPages * webSettings.numLanguages * 30;
-    }
-     
-    return totalPrice;
-    }
+   
 }
+
 
   
   

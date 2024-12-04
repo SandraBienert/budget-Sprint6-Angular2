@@ -1,6 +1,8 @@
+
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-panel',
@@ -10,35 +12,53 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./panel.component.scss'],
 })
 
-export class PanelComponent implements OnInit {
-
+export class PanelComponent implements OnInit{
   @Output() settingsChange = new EventEmitter<{ numPages: number; numLanguages: number }>();
-  panelForm = new FormGroup({
-    numPages: new FormControl(1),
-    numLanguages: new FormControl(1)
-  });
   
+  // Form group for pages and languages
+    panelForm = new FormGroup({
+    numPages: new FormControl(1),
+    numLanguages: new FormControl(1),
+    });
+  
+    // State variable to track the visibility of the panel
+    showPanel = false;
+
+    
   ngOnInit() {
     this.panelForm.valueChanges.subscribe(value => {
-      this.settingsChange.emit({
-        numPages: value.numPages ?? 0, 
-        numLanguages: value.numLanguages ?? 0
-      });
+      this.emitSettingsChange(); 
+     
+   });
+  }
+
+  private emitSettingsChange() {
+    this.settingsChange.emit({
+      numPages: this.panelForm.value.numPages || 0,
+      numLanguages: this.panelForm.value.numLanguages || 0,
     });
   }
   
   increment(field: string) {
     const control = this.panelForm.get(field);
     if (control) {
-      control.setValue((control.value ?? 0) + 1);
+      control.setValue((control.value || 0) + 1);
+      this.emitSettingsChange();
     }
   }
   
   decrement(field: string) {
     const control = this.panelForm.get(field);
     if (control) {
-      const currentValue = control.value ?? 0;
-      control.setValue(currentValue > 1 ? currentValue - 1 : 1);
+      const currentValue = control.value || 0;
+      if (currentValue > 0) {
+        control.setValue(currentValue - 1);
+        this.emitSettingsChange();
+      }
     }
+  }
+  
+  togglePanel() {
+    this.showPanel = !this.showPanel;
   }
 }

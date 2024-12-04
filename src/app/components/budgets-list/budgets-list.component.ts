@@ -1,66 +1,54 @@
+
+import { Component} from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms'
+import { PanelComponent } from '../panel/panel.component';
+import { BudgetService } from '../../services/budget.service';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
+
 
 
 @Component({
   selector: 'app-budgets-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PanelComponent, CommonModule],
   templateUrl: './budgets-list.component.html',
   styleUrls: ['./budgets-list.component.scss'],
+  providers: [BudgetService]
 })
 
-export class BudgetsListComponent implements OnInit{
+export class BudgetsListComponent  {
 
   budgetForm: FormGroup;
   totalPrice: number = 0;
-
-  constructor(private fb: FormBuilder) {
+  showPanel: boolean = false;
+  
+  
+  constructor(private fb: FormBuilder, private budgetService: BudgetService) {
     this.budgetForm = this.fb.group({
-      seoCampaign: false,
-      adsCampaign: false,
-      webCampaign: false
+      seoCampaign: [false],
+      adsCampaign: [false],
+      webCampaign: [false],
+      numPages: [1],
+      numLanguages: [1],
+    });
+
+    this.budgetForm.valueChanges.subscribe(() => {
+      this.calculateTotalPrice();
+      this.showPanel = this.budgetForm.get('webCampaign')?.value;
+    });
+  }
+
+  calculateTotalPrice(): void {
+    this.totalPrice = this.budgetService.calculateTotalPrice(this.budgetForm);
+  }
+  
+  onSettingsChange(settings: { numPages: number; numLanguages: number }) {
+    this.budgetForm.patchValue({
+      numPages: settings.numPages,
+      numLanguages: settings.numLanguages,
     });
     
-    this.budgetForm.valueChanges.subscribe((values: any) => {
-      this.calculateTotalPrice(values);
-    });
+    this.calculateTotalPrice();
   
   }
-
-  calculateTotalPrice(value: any) {
-    this.totalPrice = 0;
-    if (value.seoCampaign) {
-      this.totalPrice += 300;
-    }
-    if (value.adsCampaign) {
-      this.totalPrice += 400;
-    }
-    if (value.webCampaign) {
-      this.totalPrice += 500;
-    }
-  }
-
-
-  services = [
-    { title: "Seo", description: "Programació d'una web responsive completa", price: 300 },
-    { title: "Ads", description: "Programació d'una web responsive completa", price: 400 },
-    { title: "Web", description: "Programació d'una web responsive completa", price: 500 }
-  ];
-
- ngOnInit(): void {
-   this.budgetForm = new FormGroup({
-     seo: new FormControl(false),
-     ads: new FormControl(false),
-     web: new FormControl(false)
-    });
-  }
-
- 
- 
-
- 
-
-
-}
+}  

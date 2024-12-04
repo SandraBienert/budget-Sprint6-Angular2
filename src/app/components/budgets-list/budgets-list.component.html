@@ -1,70 +1,64 @@
-<div class ="container mt-4">
-    <header class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <h1 class="text-center">Aconsegueix la millor qualitat</h1>
-            </div>
-        </div>
-    </header>
-    <form [formGroup]="budgetForm">
+<div class="container mt-4">
+  <header class="container-fluid">
     <div class="row">
-        <div class="card mb-3 shadow p-2 mb-4 bg-body-tertiary rounded">
-                <div class="card-body d-flex justify-content-around">
-                    <div class="container-dades">
-                    <h4 class="card-title">SEO</h4>
-                    <p>descricpció</p>
-                    </div>
-                    <div class="container-price">
-                        <h5>300€</h5>
-                    </div>
-                    <div class="container-form-check">
-                        <input class="form-check-input" type="checkbox"  id="seo" formControlName="seoCampaign">
-                        <label class="form-check-label" for="flexCheckDefault"> Afegir</label>
-                    </div>
-                </div>
-            </div> 
-         <div class="card mb-3 shadow p-2 mb-4 bg-body-tertiary rounded">
-                <div class="card-body d-flex justify-content-around">
-                    <div class="container-dades">
-                    <h4 class="card-title">Ads</h4>
-                    <p>descripcio</p>
-                    </div>
-                    <div class="container-price">
-                    <h5>400€</h5>
-                    </div>
-                    <div class="container-form-check">
-                        <input class="form-check-input" type="checkbox" id="ads" formControlName="adsCampaign">
-                        <label class="form-check-label" for="flexCheckDefault"> Afegir</label>
-                    </div>
-                </div>
-            </div>
-         <div class="card mb-3 shadow p-2 mb-4 bg-body-tertiary rounded">
-                <div class="card-body d-flex justify-content-around">
-                    <div class="container-dades">
-                    <h4 class="card-title">Web</h4>
-                    <p>descripcio</p>
-                    </div>
-                    <div class="container-price">
-                        <h5>500€</h5>
-                 </div>
-                    <div class="container-form-check">
-                        <input class="form-check-input" type="checkbox"  id="web" formControlName="webCampaigne">
-                        <label class="form-check-label" for="flexCheckDefault"> Afegir</label>
-                    </div>
-                </div>
-            </div> 
-            <div class="container-totalPrice d-flex justify-content-end">
-                <h3>Total: {{totalPrice}} €</h3>
-            </div>
-  </div>
-</form>
-</div>               
-    <!-- <div *ngIf="budgetForm.value.web">
-        <app-panel (settingsChange) = "upWebSettings($event)"></app-panel>
-    </div> -->
-    
- 
-
-
-
-
+      <div class="col">
+        <h1 class="text-center">Aconsegueix la millor qualitat</h1>
+      </div>
+    </div>
+  </header>
+  <form [formGroup]="budgetForm">
+    <div class="row">
+      <div class="card mb-3 shadow p-2 mb-4 bg-body-tertiary rounded">
+        <div class="card-body d-flex justify-content-around">
+          <div class="container-dades">
+            <h4 class="card-title">SEO</h4>
+            <p>descricpció</p>
+          </div>
+          <div class="container-price">
+            <h5>300€</h5>
+          </div>
+          <div class="container-form-check">
+            <input class="form-check-input" type="checkbox" id="seoCampaign" formControlName="seoCampaign"/>
+            <label class="form-check-label" for="flexCheckDefault">Afegir</label>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3 shadow p-2 mb-4 bg-body-tertiary rounded">
+        <div class="card-body d-flex justify-content-around">
+          <div class="container-dades">
+            <h4 class="card-title">Ads</h4>
+            <p>descripcio</p>
+          </div>
+          <div class="container-price">
+            <h5>400€</h5>
+          </div>
+          <div class="container-form-check">
+            <input class="form-check-input" type="checkbox" id="adsCampaign" formControlName="adsCampaign"/>
+            <label class="form-check-label" for="flexCheckDefault">Afegir</label>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3 shadow p-2 mb-4 bg-body-tertiary rounded">
+        <div class="card-body d-flex justify-content-around">
+          <div class="container-dades">
+            <h4 class="card-title">Web</h4>
+            <p>descripcio</p>
+          </div>
+          <div class="container-price">
+            <h5>500€</h5>
+          </div>
+          <div class="container-form-check">
+            <input class="form-check-input" type="checkbox" id="webCampaign" formControlName="webCampaign"/>
+            <label class="form-check-label" for="flexCheckDefault">Afegir</label>
+          </div>
+        </div>
+        <div class="container-SubMenu" *ngIf="showPanel">
+          <app-panel (settingsChange)="onSettingsChange($event)"></app-panel>
+        </div>
+      </div>
+      <div class="container-totalPrice d-flex justify-content-end">
+        <h3>Total: {{ totalPrice }} €</h3>
+      </div>
+    </div>
+  </form>
+</div>
