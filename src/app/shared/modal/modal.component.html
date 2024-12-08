@@ -1,22 +1,22 @@
 <!----------------------------Modal-------------------------------->
 
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target = "#helpModal">
-    <i class="bi bi-info-cercle"></i>
-</button>
-<div class="modal-fade" id="helpModal" tabindex="-1" arial-labelledby="helpModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="helpModalLabel">Ajuda</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Aqui pots trobar informació sobre el nombre de pàgines i d'idiomes</p>
-                <p>Nombre de pàgines: Indica quantes pàgines tindrà el teu lloc web</p>
-                <p>Nombre d'idiomes: Indica en quants idiomes estarà disponible el teu lloc web</p>
+                <h4>Nombre de pàgines i/o d'idiomes</h4>
+                <p>Indica <strong><em>quantes pàgines</em></strong> tindrà el teu lloc web <br>
+                Indica en <strong><em>quants idiomes</em></strong> estarà disponible el teu lloc web<br>
+                El cost del servei d'idiomes i de pàgines és de <strong><em>30€</em></strong> cadascún.
+                </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tancar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Tancar</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,4 @@
+.card.mb-3.shadow.p-2.mb-4.bg-body-tertiary.rounded {
+  border: 2px solid cyan;
+  transition: border-color 0.3s;
+}/*# sourceMappingURL=budgets-list.component.css.map */

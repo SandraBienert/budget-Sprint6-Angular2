@@ -13,23 +13,21 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 
 export class PanelComponent implements OnInit{
+
   @Output() settingsChange = new EventEmitter<{ numPages: number; numLanguages: number }>();
-  
+  @Output() openModalEvent = new EventEmitter<void>();
+
   // Form group for pages and languages
     panelForm = new FormGroup({
     numPages: new FormControl(1),
     numLanguages: new FormControl(1),
     });
-  
-    // State variable to track the visibility of the panel
-    showPanel = false;
-
-    
+ 
   ngOnInit() {
-    this.panelForm.valueChanges.subscribe(value => {
+    this.panelForm.valueChanges.subscribe(() => {
       this.emitSettingsChange(); 
-     
-   });
+    });
+    
   }
 
   private emitSettingsChange() {
@@ -57,8 +55,7 @@ export class PanelComponent implements OnInit{
       }
     }
   }
-  
-  togglePanel() {
-    this.showPanel = !this.showPanel;
+  openModal() {
+    this.openModalEvent.emit();
   }
 }

@@ -1,0 +1,8 @@
+.container.d-flex.flex-column.justify-content-end {
+  width: 60%;
+}
+
+button.btn.btn-info {
+  border: 1px solid black;
+  margin-right: 20px;
+}/*# sourceMappingURL=panel.component.css.map */
