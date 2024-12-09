@@ -1,8 +1,9 @@
+import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+// No cal importar environment. Si estàs en producció, pots habilitar el mode producció de manera manual 
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+const production = false; // Canvia a true si estàs preparant una build de producció 
+if (production) {
+  enableProdMode();
+} bootstrapApplication(AppComponent).catch(err => console.error(err));

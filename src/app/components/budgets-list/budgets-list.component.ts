@@ -1,25 +1,25 @@
 
-import { Component, Renderer2} from '@angular/core';
+import { Component, OnInit, Renderer2} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { PanelComponent } from '../panel/panel.component';
 import { BudgetService } from '../../services/budget.service';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../shared/modal/modal.component';
-
-
+import { BudgetFormComponent } from "../budget-form/budget-form.component";
+import { ContractedBudgetsComponent } from "../contracted-budgets/contracted-budgets.component";
 
 
 @Component({
   selector: 'app-budgets-list',
   standalone: true,
-  imports: [ReactiveFormsModule, PanelComponent, CommonModule, ModalComponent],
+  imports: [ReactiveFormsModule, PanelComponent, CommonModule, ModalComponent, BudgetFormComponent, ContractedBudgetsComponent],
   templateUrl: './budgets-list.component.html',
   styleUrls: ['./budgets-list.component.scss'],
   providers: [BudgetService]
 })
 
-export class BudgetsListComponent  {
-
+export class BudgetsListComponent   {
+  
   budgetForm: FormGroup;
   totalPrice: number = 0;
   showPanel: boolean = false;
@@ -30,12 +30,12 @@ export class BudgetsListComponent  {
     private budgetService: BudgetService,
     private renderer: Renderer2
   ) {
-      this.budgetForm = this.fb.group({
-        seoCampaign: [false],
-        adsCampaign: [false],
-        webCampaign: [false],
-        numPages: [1],
-        numLanguages: [1],
+    this.budgetForm = this.fb.group({
+      seoCampaign: [false],
+      adsCampaign: [false],
+      webCampaign: [false],
+      numPages: [1],
+      numLanguages: [1],
     });
 
     this.budgetForm.valueChanges.subscribe(() => {
@@ -43,7 +43,6 @@ export class BudgetsListComponent  {
       this.showPanel = this.budgetForm.get('webCampaign')?.value;
     });
     
-    this.borderCyan = true;
   }
 
   calculateTotalPrice(): void {

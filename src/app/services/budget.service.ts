@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -7,7 +7,19 @@ import { FormGroup } from '@angular/forms';
 
 export class BudgetService {
  
+ 
+  private budgets: WritableSignal<any[]> = signal([]);
+  
+  addBudget(budget: any) {
+   this.budgets.set([...this.budgets(), budget]);
+  }
+  
+  getBudgets(): Signal<any[]> {
+    return this.budgets;
+  }
+  
   calculateTotalPrice(budgetForm: FormGroup): number {
+    
     let total = 0;
   
     if (budgetForm.value.seoCampaign) total += 300;

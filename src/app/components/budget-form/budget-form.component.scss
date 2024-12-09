@@ -1,0 +1,28 @@
+
+.container-formPersonal{
+    background-color: rgb(7, 156, 156);
+    border: 4px solid rgb(9, 104, 104);
+    height: 180px;
+}
+
+h3{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.d-flex.justify-content-center{
+    gap: 20px;
+}
+
+.input.undefined{ 
+    width: 200px;
+    flex-wrap: wrap;
+}
+
+.btn.btn-dark{
+    width: 200px;
+}
+
+hr{
+    color: cyan;
+}

@@ -19,7 +19,7 @@
           </div>
           <div class="container-form-check">
             <input class="form-check-input" type="checkbox" id="seoCampaign" formControlName="seoCampaign"/>
-            <label class="form-check-label" for="seoCampaign">Afegir</label>
+            <label class="form-check-label" for="seoCampaign"> Afegir</label>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
           </div>
           <div class="container-form-check">
             <input class="form-check-input" type="checkbox" id="adsCampaign" formControlName="adsCampaign"/>
-            <label class="form-check-label" for="adsCampaign">Afegir</label>
+            <label class="form-check-label" for="adsCampaign"> Afegir</label>
           </div>
         </div>
       </div>
@@ -50,11 +50,11 @@
           </div>
           <div class="container-form-check">
             <input class="form-check-input" type="checkbox" id="webCampaign" formControlName="webCampaign"/>
-            <label class="form-check-label" for="webCampaign">Afegir</label>
+            <label class="form-check-label" for="webCampaign"> Afegir</label>
           </div>
         </div>
         <div class="container-SubMenu" *ngIf="showPanel">
-          <app-panel (settingsChange)="onSettingsChange($event)" (openModalEvent)="openModal()"><</app-panel>
+          <app-panel (settingsChange)="onSettingsChange($event)" (openModalEvent)="openModal()"></app-panel>
         </div>
       </div>
       <div class="container-totalPrice d-flex justify-content-end">
@@ -64,3 +64,7 @@
   </form>
 </div>
 <app-modal></app-modal>
+<div class="container">
+  <app-budget-form></app-budget-form>
+</div>
+<app-contracted-budgets></app-contracted-budgets>
