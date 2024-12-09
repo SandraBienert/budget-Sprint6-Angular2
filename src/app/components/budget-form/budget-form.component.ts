@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { BudgetService } from '../../services/budget.service';
 import { Observable, Subscribable } from 'rxjs';
 
+
+
+
 @Component({
   selector: 'app-budget-form',
   standalone: true,
@@ -14,12 +17,14 @@ import { Observable, Subscribable } from 'rxjs';
 export class BudgetFormComponent {
 
   budgetForm: FormGroup;
+
   services = [
     { name: 'Fer una campanya SEO', price: 300 },
     { name: 'Fer una campanya de publicitat', price: 400 },
     { name: 'Fer una pàgina web', price: 500 }];
   
   totalCost = 0;
+
   budgets$ : Observable<undefined> | Subscribable<undefined> | Promise<undefined> | undefined;
   clientName: string | undefined;
   phone: number | undefined;
@@ -31,14 +36,29 @@ export class BudgetFormComponent {
       clientName: [''],
       phone: [''],
       email: [''],
-      seo: [false],
-      publicity: [false],
-      webpage: [false]
+      seoCampaign: [false],
+      adsCampigne: [false],
+      webCampaign: [false],
+      numPages: [0],
+      numLanguages: [0]
     });
     
     this.budgetForm.valueChanges.subscribe(_values => {
-      this.calculateTotal();
+      this.totalCost = this.budgetService.calculateTotalPrice(this.budgetForm);
     });
+  }
+  
+    ngOnInit(): void {
+    // Subscripció a la llista de pressupostos
+    this.budgetService.budgets$.subscribe(budgets => {
+      console.log(budgets);
+    });
+  }
+
+  submit() {
+    const totalPrice = this.budgetService.calculateTotalPrice(this.budgetForm);
+    const budget = { ...this.budgetForm.value, totalPrice };
+    this.budgetService.addBudget(budget);
   }
   
   calculateTotal() {

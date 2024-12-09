@@ -1,15 +1,14 @@
-
-
-<div class=" container-formPersonal">
-  <h3 class="text-center">Demanar Pressupost:</h3>
-  <div class="d-flex justify-content-center">
-    <input class="input" type="text" placeholder="Nom" id="clientName">
-    <input class="input" type="text" placeholder="Telefon" id="phone"/>
-    <input class="input" type="text" placeholder="email" id="email"/>
-    <button class="btn btn-dark" type="button" (click)="addBudget()">Sol·licitar Pressupost</button>
-  </div>
+<div class="container-formPersonal">
+  <form [formGroup]="budgetForm" (ngSubmit)="addBudget()">
+    <h3 class="text-center">Demanar Pressupost:</h3>
+    <div class="d-flex justify-content-center">
+      <input class="input" type="text" placeholder="Nom" id="clientName" />
+      <input class="input" type="text" placeholder="Telefon" id="phone" />
+      <input class="input" type="text" placeholder="email" id="email" />
+      <button class="btn btn-dark" type="button" (click)="addBudget()">
+        Sol·licitar Pressupost
+      </button>
+    </div>
+  </form>
 </div>
- <hr>
-
-
-
+<hr />

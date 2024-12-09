@@ -6,13 +6,12 @@ import { BudgetService } from '../../services/budget.service';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { BudgetFormComponent } from "../budget-form/budget-form.component";
-import { ContractedBudgetsComponent } from "../contracted-budgets/contracted-budgets.component";
 
 
 @Component({
   selector: 'app-budgets-list',
   standalone: true,
-  imports: [ReactiveFormsModule, PanelComponent, CommonModule, ModalComponent, BudgetFormComponent, ContractedBudgetsComponent],
+  imports: [ReactiveFormsModule, PanelComponent, CommonModule, ModalComponent, BudgetFormComponent],
   templateUrl: './budgets-list.component.html',
   styleUrls: ['./budgets-list.component.scss'],
   providers: [BudgetService]

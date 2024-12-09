@@ -1,21 +1,33 @@
-import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
+// Defineix la interfície Budget per tipar els pressupostos
+interface Budget {
+  clientName: string;
+  phone: string;
+  email: string;
+  totalPrice: number;
+  services: {
+    seoCampaign: boolean;
+    adsCampaign: boolean;
+    webCampaign: boolean;
+    numPages?: number; // Opcional, només si WebCampaign està seleccionat
+    numLanguages?: number; // Opcional, només si WebCampaign està seleccionat
+  };
+}
 @Injectable({
   providedIn: 'root'
 })
 
 export class BudgetService {
- 
- 
-  private budgets: WritableSignal<any[]> = signal([]);
+
+  private budgetsSubject = new BehaviorSubject<any[]>([]);
+  budgets$ = this.budgetsSubject.asObservable();
   
   addBudget(budget: any) {
-   this.budgets.set([...this.budgets(), budget]);
-  }
+    this.budgetsSubject.next([...this.budgetsSubject.value, budget]);
   
-  getBudgets(): Signal<any[]> {
-    return this.budgets;
   }
   
   calculateTotalPrice(budgetForm: FormGroup): number {
@@ -29,9 +41,7 @@ export class BudgetService {
       total += (budgetForm.value.numPages + budgetForm.value.numLanguages) * 30; // Afegim el cost de pàgines i idiomes només si webCampaign és seleccionat 
     } 
       return total;
-    }
-
-   
+    } 
 }
 
 
